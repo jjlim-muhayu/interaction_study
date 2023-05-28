@@ -1,0 +1,28 @@
+body {
+  height: 200vh;
+  padding:0;
+}
+
+div {
+
+
+}
+
+#div-1 {
+  height: 600px;
+  position: fixed; left:0; top:20px; right:0;
+  background-color: #b2b2b2;
+}
+
+#div-2 {
+  position: relative;
+  margin-top: 420px;
+  height: 500px;
+  background-color: #679146;
+}
+#div-3 {
+  position: relative;
+  margin-top: 20px;
+  height: 500px;
+  background-color: #339bc0;
+}
