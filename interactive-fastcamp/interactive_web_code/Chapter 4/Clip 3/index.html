@@ -2,96 +2,102 @@
 <html lang="ko">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./index.css">
-  <title>Fast Bank</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./index.css">
+    <title>Fast Bank</title>
 </head>
 
+
 <body>
-  <div id="main-img-wrapper">
-    <img width="320" src="./Lovepik_com-401339128-data-management-data-analysis-icon-free-vector-illustration-mate.png"
-      alt="coding image">
-  </div>
-  <div id="intro-main">
+<div id="intro-main">
     <p>이미 모두의 은행, 패스트뱅크</p>
     <p>함께 일해요.</p>
     <p id="join-us-text">Join us!</p>
     <img id="down-arrow-icon" src="./down-arrow.png" alt="down arrow icon">
-  </div>
-  <ul id="list-item-wrapper">
+    <ul id="list-item-wrapper1">
+        <li class="list-item3 abc">저금--</li>
+        <li class="list-item1">26주적금--</li>
+        <li class="list-item2">Ω볶이--</li>
+        <li class="list-item4">축구선수--</li>
+        <li class="list-item5">패스트캠퍼스--</li>
+    </ul>
+</div>
+<ul id="list-item-wrapper">
+    <li class="list-item">26주적금</li>
+    <li class="list-item">저금떡볶이축구선수패스트캠퍼스</li>
+    <li class="list-item">축구</li>
+    <li class="list-item">마이너스통장대출</li>
+    <li class="list-item">치킨</li>
     <li class="list-item">26주적금</li>
     <li class="list-item">저금</li>
     <li class="list-item">패스트캠퍼스</li>
     <li class="list-item">떡볶이</li>
     <li class="list-item">치킨</li>
-    <li class="list-item">축구</li>
-    <li class="list-item">축구선수</li>
-    <li class="list-item">마이너스통장대출</li>
-    <li class="list-item">26주적금</li>
+    <li class="list-item">야호</li>
+    <li class="list-item">야호호호호축구축구선수마이너스통장대출26주적금</li>
     <li class="list-item">저금</li>
     <li class="list-item">패스트캠퍼스</li>
     <li class="list-item">떡볶이</li>
+    <li class="list-item">축구</li>
+    <li class="list-item"><p>치킨</p></li>
+    <li class="list-item">축구선수</li>
+    <li class="list-item">패스트캠퍼스</li>
+    <li class="list-item">떡볶이</li>
+    <li class="list-item">마이너스통장대출</li>
+    <!--<editor-fold desc="Description">-->
+    <li class="list-item">26주적금</li>
+    <!--</editor-fold>-->
+    <li class="list-item">
+        <div>저금</div>
+    </li>
     <li class="list-item">치킨</li>
     <li class="list-item">축구</li>
     <li class="list-item">축구선수</li>
     <li class="list-item">마이너스통장대출</li>
-    <li class="list-item">26주적금</li>
-    <li class="list-item">저금</li>
-    <li class="list-item">패스트캠퍼스</li>
-    <li class="list-item">떡볶이</li>
-    <li class="list-item">치킨</li>
-    <li class="list-item">축구</li>
-    <li class="list-item">축구선수</li>
-    <li class="list-item">마이너스통장대출</li>
-    <li class="list-item">26주적금</li>
-    <li class="list-item">저금</li>
-    <li class="list-item">패스트캠퍼스</li>
-    <li class="list-item">떡볶이</li>
-    <li class="list-item">치킨</li>
-    <li class="list-item">축구</li>
-    <li class="list-item">축구선수</li>
-    <li class="list-item">마이너스통장대출</li>
-  </ul>
-  <main>
+</ul>
+<main>
     <section id="panel1-img">
-      <img id="flying-santa-image" src="./santa_flying.png" alt="santa flying">
+        <img id="flying-santa-image" src="./santa_flying.png" alt="santa flying">
     </section>
-  </main>
+</main>
 </body>
-
+<div id="main-img-wrapper">
+    <img width="320" src="./Lovepik_com-401339128-data-management-data-analysis-icon-free-vector-illustration-mate.png"
+         alt="coding image">
+</div>
 <script>
-  const listStyleChangeStartY = 373
-  const listStyleChangeEndY = 1585
+    const listStyleChangeStartY = 373
+    const listStyleChangeEndY = 1585
 
-  const listItems = document.querySelectorAll('.list-item')
+    const listItems = document.querySelectorAll('.list-item')
 
-  const division = (listStyleChangeEndY - listStyleChangeStartY) / listItems.length
+    const division = (listStyleChangeEndY - listStyleChangeStartY) / listItems.length
 
-  const panel1Img = document.getElementById('panel1-img')
-  const flyingSantaImage = document.getElementById('flying-santa-image')
+    const panel1Img = document.getElementById('panel1-img')
+    const flyingSantaImage = document.getElementById('flying-santa-image')
 
-  window.addEventListener("scroll", () => {
-    if (document.getElementById("on")) document.getElementById("on").removeAttribute("id")
+    window.addEventListener("scroll", () => {
+        if (document.getElementById("on")) document.getElementById("on").removeAttribute("id")
 
-    if (window.scrollY > listStyleChangeStartY && window.scrollY < listStyleChangeEndY) {
-      const targetIndex = Math.round((window.scrollY - listStyleChangeStartY) / division)
+        if (window.scrollY > listStyleChangeStartY && window.scrollY < listStyleChangeEndY) {
+            const targetIndex = Math.round((window.scrollY - listStyleChangeStartY) / division)
 
-      if (listItems[targetIndex]) listItems[targetIndex].id = "on"
-    }
+            if (listItems[targetIndex]) listItems[targetIndex].id = "on"
+        }
 
-    const scrollYBottom = window.scrollY + document.documentElement.clientHeight
+        const scrollYBottom = window.scrollY + document.documentElement.clientHeight
 
-    if (scrollYBottom > panel1Img.offsetTop && scrollYBottom < panel1Img.offsetTop + panel1Img.offsetHeight + 100) {
-      const translateX = 80 - 80 * 1.3 * (scrollYBottom - panel1Img.offsetTop) / (panel1Img.offsetHeight + 100)
-      const translateY = -13 + 13 * (scrollYBottom - panel1Img.offsetTop) / (panel1Img.offsetHeight + 100)
+        if (scrollYBottom > panel1Img.offsetTop && scrollYBottom < panel1Img.offsetTop + panel1Img.offsetHeight + 100) {
+            const translateX = 80 - 80 * 1.3 * (scrollYBottom - panel1Img.offsetTop) / (panel1Img.offsetHeight + 100)
+            const translateY = -13 + 13 * (scrollYBottom - panel1Img.offsetTop) / (panel1Img.offsetHeight + 100)
 
-      const rotationDegree = 23 - 23 * 1.7 * (scrollYBottom - panel1Img.offsetTop) / (panel1Img.offsetHeight + 100)
+            const rotationDegree = 23 - 23 * 1.7 * (scrollYBottom - panel1Img.offsetTop) / (panel1Img.offsetHeight + 100)
 
-      flyingSantaImage.style.transform = `translate(${translateX}px, ${translateY}px) rotate(${rotationDegree}deg)`
-    }
-  })
+            flyingSantaImage.style.transform = `translate(${translateX}px, ${translateY}px) rotate(${rotationDegree}deg)`
+        }
+    })
 
 </script>
 

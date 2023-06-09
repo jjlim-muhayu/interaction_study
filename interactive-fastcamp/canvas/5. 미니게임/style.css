@@ -42,7 +42,11 @@ main {
   user-select: none;
 }
 canvas{
-  border: 1px solid red;
+  /*border: 1px solid red;*/
+}
+
+section{
+    display: none !important;
 }
 
 .title-img {
