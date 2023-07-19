@@ -1,10 +1,8 @@
-import App from "./js-jong/App.js"
+import App from "./js/App.js"
 
 window.addEventListener('load', () => {
   const app = new App()
 
   app.render()
 })
-
-
 
