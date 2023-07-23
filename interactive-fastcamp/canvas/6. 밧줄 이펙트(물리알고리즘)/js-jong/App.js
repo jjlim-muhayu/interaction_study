@@ -80,9 +80,12 @@ export default class App {
             this.dots.forEach(dot => {
                 dot.update(this.mouse)
             })
-            this.sticks.forEach(stick => {
-                stick.update()
-            })
+            for (let i = 0; i < 10; i++) {
+                this.sticks.forEach(stick => {
+                    stick.update()
+                })
+            }
+
 
             // draw here
             // this.ropes.forEach(rope => {

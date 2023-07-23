@@ -28,7 +28,7 @@ export default class Dot {
         //vel.y += 0.8
         vel.mult(this.friction) // 마찰력을 매 프레임마다 곱해주기
         vel.add(this.gravity) // 중력은 매 프레임마다 더하기
-        this.pos.add(vel)
+
 
         // 마우스에 점이 끌려오게 하기
         // 1. 방향벡터 구하기
@@ -36,14 +36,15 @@ export default class Dot {
         const dist = Math.sqrt(dx * dx + dy * dy) //2d 방향벡터
 
         // 선분 길이(dist)가 마우스 감지범위(정의값은 100)보다 크면, return해서 Dot인스턴스 업데이트 취소
-        if(dist > mouse.radius) return
+        //if(dist > mouse.radius) return
         // 마우스와 공사이의 거리 구하기
         // 공식: mouse.pos - dot.pos = (dx, dy)
         const direction = new Vector(dx / dist, dy /dist) //방향 벡터 생성
         // 2. 힘구하기
         // 공식: radius - dist / radius => 0 or 1
         // 0일경우 힘이 미치지 않고, 1에 가까워질수록 힘이 미친다.
-        const force  = (mouse.radius - dist) / mouse.radius
+        // const force  = (mouse.radius - dist) / mouse.radius
+        const force  = Math.max(((mouse.radius - dist) / mouse.radius), 0)
         console.log('pointer', dist)
         // 3. 마우스가 타켓 점 반경안에 들어왔을때 조건하에 액션
         // 4. 마우스에 끌려오는 점을 위해 힘을 설정하기
@@ -54,7 +55,10 @@ export default class Dot {
         // force가 0.6보다 클 경우 점의 위치를 마우스의 현재 위치로 설정하고
         // 아닐경우는 점의 위치에 방향벡터와 힘을 곱해줘서 마우스 위치에 따라 점이 따라오도록 한다.
         if(force > 0.6) this.pos.setXY(mouse.pos.x, mouse.pos.y)
-        else this.pos.add(direction.mult(force).mult(5))
+        else{
+            this.pos.add(vel)
+            this.pos.add(direction.mult(force).mult(5))
+        }
 
 
     }

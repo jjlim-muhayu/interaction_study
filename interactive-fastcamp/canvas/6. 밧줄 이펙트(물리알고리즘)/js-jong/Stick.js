@@ -7,7 +7,7 @@ export default class Stick {
         // 선의 길이 설정
         this.length = this.startPoint.pos.dist(this.endPoint.pos)
 
-        this.tension = 1
+        this.tension = 0.3
         // 1보다 작아지면 질수록 텐션력이 떨어지므로, 원래대로 돌아가지 못하는 선처럼 보이게 된다.
         // 스프링효과처럼 보인다.
     }
