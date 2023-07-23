@@ -1,13 +1,15 @@
 export default class Stick {
     // 점에 연결된 선
     constructor(p1, p2) {
-        console.log('Stick==>', p1, p2)
+        // console.log('Stick==>', p1, p2)
         this.startPoint = p1
         this.endPoint = p2
         // 선의 길이 설정
         this.length = this.startPoint.pos.dist(this.endPoint.pos)
 
-        this.tension = 0.05
+        this.tension = 1
+        // 1보다 작아지면 질수록 텐션력이 떨어지므로, 원래대로 돌아가지 못하는 선처럼 보이게 된다.
+        // 스프링효과처럼 보인다.
     }
 
 
@@ -22,13 +24,13 @@ export default class Stick {
         const offsetX = diff * dx * this.tension  // aX
         const offsetY = diff * dy * this.tension // aY
 
-        console.log('StickUpdate => ', `
-            this.length : ${this.length},
-            dx: ${dx}, dy: ${dy},
-            dist: ${dist}, diff: ${diff},
-            offsetX: ${offsetX},
-            offsetY: ${offsetY}
-        `)
+        // console.log('StickUpdate => ', `
+        //     this.length : ${this.length},
+        //     dx: ${dx}, dy: ${dy},
+        //     dist: ${dist}, diff: ${diff},
+        //     offsetX: ${offsetX},
+        //     offsetY: ${offsetY}
+        // `)
 
         // 힘에 대한 분배
         const m = this.startPoint.mass + this.endPoint.mass

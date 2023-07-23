@@ -2,7 +2,13 @@ import App from "./App.js"
 import Vector from "./Vector.js"
 
 export default class Mouse {
-  constructor(canvas) {
+    constructor(canvas) {
+        this.pos = new Vector(-1000, -1000)
+        this.radius = 100
 
-  }
+        canvas.ontouchmove= e => this.pos.setXY(e.touches[0].clientX, e.touches[0].clientY)
+        canvas.onmousemove = e => this.pos.setXY(e.clientX, e.clientY)
+
+
+    }
 }

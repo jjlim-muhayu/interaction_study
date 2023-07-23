@@ -21,7 +21,7 @@ export default class App {
         this.createRopes()
         //선의 시작점과 끝점을 위해 배열로 생성한다.
         //this.dots = [new Dot(400,50), new Dot(500,100), new Dot(100,50), new Dot(200,100)]
-        this.dots = [new Dot(400,50), new Dot(450,100), new Dot(500,50), new Dot(650,100)]
+        this.dots = [new Dot(300,50), new Dot(200,50),  new Dot(350,50), new Dot(450,300)]
         //세로선
         this.sticks = [
             new Stick(this.dots[0], this.dots[1]),
@@ -31,8 +31,10 @@ export default class App {
 
         this.dots[0].pinned = true
         // this.dots[2].pinned = true
-        //
-        // this.dots[1].mass = 10
+        //this.dots[1].mass = 10
+
+        // 마우스 객체 생성
+        this.mouse = new Mouse(this.canvas)
     }
 
     createRopes() {
@@ -65,17 +67,23 @@ export default class App {
             this.ctx.clearRect(0, 0, App.width, App.height)
             //this.ctx.fillRect(100, 100, 100, 100)
 
-            // 점 생성
+            // 점과 선분을 생성
             this.dots.forEach(dot => {
-                dot.update()
+                // 프레임 업데이트시 마우스 객체를 update 함수에 전달
                 dot.draw(this.ctx)
             })
-
-            // 선 생성
             this.sticks.forEach(stick => {
-                stick.update()
                 stick.draw(this.ctx)
             })
+
+            // 점과 선분을 업데이트
+            this.dots.forEach(dot => {
+                dot.update(this.mouse)
+            })
+            this.sticks.forEach(stick => {
+                stick.update()
+            })
+
             // draw here
             // this.ropes.forEach(rope => {
             //   rope.update(this.mouse)
