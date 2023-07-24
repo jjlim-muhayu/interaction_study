@@ -59,7 +59,7 @@ export default class Stick {
     draw(ctx) {
         ctx.beginPath() // 새로운 선 시작 알림
         ctx.strokeStyle = '#999'
-        ctx.lineWidth = 10
+        ctx.lineWidth = 1
         ctx.moveTo(this.startPoint.pos.x, this.startPoint.pos.y) // 선의 출발점
         ctx.lineTo(this.endPoint.pos.x, this.endPoint.pos.y) // 선의 도착점
         ctx.stroke() //

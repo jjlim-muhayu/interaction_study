@@ -17,24 +17,18 @@ export default class App {
         this.resize()
         window.addEventListener('resize', this.resize.bind(this))
 
-
         this.createRopes()
-        //선의 시작점과 끝점을 위해 배열로 생성한다.
-        //this.dots = [new Dot(400,50), new Dot(500,100), new Dot(100,50), new Dot(200,100)]
-        this.dots = [new Dot(300,50), new Dot(200,50),  new Dot(350,50), new Dot(450,300)]
-        //세로선
-        this.sticks = [
-            new Stick(this.dots[0], this.dots[1]),
-            new Stick(this.dots[1], this.dots[2]),
-            new Stick(this.dots[2], this.dots[3]),
-        ]
-
-        this.dots[0].pinned = true
-        // this.dots[2].pinned = true
-        //this.dots[1].mass = 10
 
         // 마우스 객체 생성
         this.mouse = new Mouse(this.canvas)
+
+        // this.ropes = []
+        // const rope_1 = new Rope({
+        //     x: 400,
+        //     y: 100
+        // })
+        // rope_1.pin(0)
+        // this.ropes.push(rope_1)
     }
 
     createRopes() {
@@ -52,6 +46,23 @@ export default class App {
         this.ctx.scale(App.dpr, App.dpr)
 
         this.createRopes()
+
+        this.initRopes()
+    }
+
+    initRopes(){
+        this.ropes = []
+        const TOTAL = App.width * 0.06
+        for (let i = 0; i < TOTAL; i++) {
+            const rope = new Rope({
+                x: randomNumBetween(App.width * 0.3, App.width * 0.7),
+                y:0,
+                gap: randomNumBetween(App.height * 0.05, App.height * 0.08)
+            })
+            rope.pin(0)
+            this.ropes.push(rope)
+        }
+        console.log('Total', TOTAL)
     }
 
     render() {
@@ -68,23 +79,12 @@ export default class App {
             //this.ctx.fillRect(100, 100, 100, 100)
 
             // 점과 선분을 생성
-            this.dots.forEach(dot => {
-                // 프레임 업데이트시 마우스 객체를 update 함수에 전달
-                dot.draw(this.ctx)
-            })
-            this.sticks.forEach(stick => {
-                stick.draw(this.ctx)
+            this.ropes.forEach(rope => {
+                rope.update(this.mouse)
+                rope.draw(this.ctx)
             })
 
-            // 점과 선분을 업데이트
-            this.dots.forEach(dot => {
-                dot.update(this.mouse)
-            })
-            for (let i = 0; i < 10; i++) {
-                this.sticks.forEach(stick => {
-                    stick.update()
-                })
-            }
+            // 점과 선분 업데이트
 
 
             // draw here

@@ -14,7 +14,11 @@ export default class Dot {
 
         this.pinned = false  // 점 화면에 고정되었나?
 
-        this.mass = 1
+        this.mass = 2
+
+        // blur이미지 사용하여 점에 효과
+        this.lightImg = document.querySelector('#light-img')
+        this.lightSize  = 15
     }
 
     update(mouse) {
@@ -64,12 +68,18 @@ export default class Dot {
     }
 
     drawLight(ctx) {
-
+        ctx.drawImage(
+            this.lightImg,
+            this.pos.x - this.lightSize / 2,
+            this.pos.y - this.lightSize / 2,
+            this.lightSize,
+            this.lightSize
+        )
     }
 
     draw(ctx) {
-        ctx.fillStyle = '#000'
-        ctx.beginPath()
+        ctx.fillStyle = '#999'
+        // ctx.beginPath()
         // arc(x,y,반지름,시작 각도 , 끝 각도 , 방향 설정)
         // x, y: 원 중심의 x좌표, 원 중심의 y 좌표,
         // @r: 원의 반지름,
@@ -77,8 +87,11 @@ export default class Dot {
         // @endAngle: 3시를 기준으로 시계방향으로 끝 각도 설정(원주율로 지정))
         // @방향설정: 원을 그릴 때 시계방향으로 그릴지, 반시계방향으로 그릴지 설정
         //          false:시계 방향(기본값),true: 반시계 방향
-        ctx.arc(this.pos.x, this.pos.y, 10,0, Math.PI * 2)
-        ctx.fill()
-        ctx.closePath()
+        // ctx.arc(this.pos.x, this.pos.y, 1,0, Math.PI * 2)
+        // ctx.fill()
+        // ctx.closePath()
+
+        //정사각형 모양으로
+        ctx.fillRect(this.pos.x - this.mass, this.pos.y - this.mass, this.mass * 2, this.mass * 2)
     }
 }
