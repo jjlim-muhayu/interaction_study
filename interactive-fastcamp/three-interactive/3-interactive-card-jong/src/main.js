@@ -30,6 +30,13 @@ function init() {
 
     // orbitControl
     const controls = new OrbitControls(camera, renderer.domElement)
+    controls.autoRotate = true; // 애니메이션 상태에서 업데이트 함수에서 컨트롤 업데이트를 해줘야 실제로 회전이 된다.
+    controls.autoRotateSpeeed = 2.5;
+    controls.rotateSpeed = 0.75;
+    controls.enableDamping = true;
+    controls.enableZoom = false;
+    controls.minPolarAngle = Math.PI / 2 - Math.PI / 3
+    controls.maxPolarAngle = Math.PI / 2 + Math.PI / 3
 
     // 카드 생성
     const card = new Card({
@@ -38,6 +45,7 @@ function init() {
         radius: 0.5,
         color:'#0077ff'
     })
+    card.mesh.rotation.z = Math.PI * 0.1;
     scene.add(card.mesh)
 
     // GUI TEST
@@ -71,6 +79,7 @@ function init() {
     render();
 
     function render() {
+        controls.update()
         renderer.render(scene, camera);
 
         requestAnimationFrame(render);

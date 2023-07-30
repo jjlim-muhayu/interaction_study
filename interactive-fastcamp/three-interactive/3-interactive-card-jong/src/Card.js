@@ -14,7 +14,10 @@ class Card{
             .absarc(-x, -y, radius,-Math.PI / 2, Math.PI, true)
             .lineTo(-(x+radius), y)
             .absarc(-x, y, radius,Math.PI, Math.PI / 2,true)
-        const geometry = new THREE.ShapeGeometry(shape)
+        const geometry = new THREE.ExtrudeGeometry(shape, {
+            depth: 0.1,
+            bevelThickness: 0.02
+        })
         const material = new THREE.MeshStandardMaterial({
              color,
             side: THREE.DoubleSide, // 앞뒤 양면 모두에 메터리얼 적용
