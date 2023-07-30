@@ -1,4 +1,6 @@
 import * as THREE from 'three';
+import Card from './Card.js'
+import {OrbitControls} from "three/addons/controls/OrbitControls.js";
 
 window.addEventListener('load', function () {
     init();
@@ -15,10 +17,6 @@ function init() {
     document.body.appendChild(renderer.domElement);
 
     const scene = new THREE.Scene();
-    // scene.background = new THREE.Color('orange') // scene컬러 배경 설정은 최상의 레이어와 색상주는것과 같은 개념
-    const textureLoader = new THREE.TextureLoader();
-    const texture = textureLoader.load('https://previews.123rf.com/images/rutchapong/rutchapong1607/rutchapong160700028/62443595-%ED%91%B8%EB%A5%B8-%ED%95%98%EB%8A%98%EA%B3%BC-%EA%B5%AC%EB%A6%84%EC%9E%85%EB%8B%88%EB%8B%A4-%ED%95%98%EB%8A%98%EA%B3%BC-%EA%B5%AC%EB%A6%84-%EB%B0%B0%EA%B2%BD%EC%9E%85%EB%8B%88%EB%8B%A4-%ED%95%98%EB%8A%98-%EB%B0%B0%EA%B2%BD.jpg')
-    scene.background = texture;
     const camera = new THREE.PerspectiveCamera(
         75,
         window.innerWidth / window.innerHeight,
@@ -26,8 +24,22 @@ function init() {
         500,
     );
 
-    camera.position.z = 5;
+    camera.position.z = 25;
 
+    // orbitControl
+    const controls = new OrbitControls(camera, renderer.domElement)
+
+    // 카드 생성
+    const card = new Card({
+        width: 10,
+        height: 15.8,
+        color:'#0077ff'
+    })
+    scene.add(card.mesh)
+    // 조명 설정
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.8)
+    ambientLight.position.set(-5, -5,-5);
+    scene.add(ambientLight)
     render();
 
     function render() {
