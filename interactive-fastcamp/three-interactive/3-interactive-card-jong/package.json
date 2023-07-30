@@ -1,5 +1,5 @@
 {
-  "name": "0-boilerplate",
+  "name": "3d_card",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -12,6 +12,7 @@
     "vite": "^4.1.0"
   },
   "dependencies": {
+    "lil-gui": "^0.18.2",
     "three": "^0.149.0"
   }
 }

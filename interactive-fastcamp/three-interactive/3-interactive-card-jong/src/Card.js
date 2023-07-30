@@ -5,7 +5,9 @@ class Card{
         const geometry = new THREE.PlaneGeometry(width, height)
         const material = new THREE.MeshStandardMaterial({
              color,
-            side: THREE.DoubleSide // 앞뒤 양면 모두에 메터리얼 적용
+            side: THREE.DoubleSide, // 앞뒤 양면 모두에 메터리얼 적용
+            roughness: 0.5,
+            metalness: 0.5,
         })
 
         const mesh = new THREE.Mesh(geometry, material)
