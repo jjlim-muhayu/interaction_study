@@ -17,6 +17,7 @@ body {
 .wrapper {
     position: relative;
     min-height: 1000vh;
+    z-index:1;
 }
 
 header {
