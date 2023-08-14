@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
-import Fireworks from "./FireWorks.js";
+import Firework from "./FireWorks.js";
 
 window.addEventListener('load', function () {
     init();
@@ -80,16 +80,25 @@ function init() {
     // scene.add(mesh)
 
     // 방법2. fireWorks 클래스 사용하여 파티클 생성
-    const fireWorks = []
-    // fireworks인스턴스를 저장한다.
 
-    const fireWork = new Fireworks({x:0, y:0})
-    scene.add(fireWork.points)
+    const fireworks = []
+    fireworks.update = function(){
+        for (let i = 0; i < this.length; i++) {
+            const firework =  fireworks[i]
+            firework.update()
+        }
+    }
+
+    const firework = new Firework({x:0, y:0})
+    scene.add(firework.points)
+    // 불꽃 객체를 저장
+    fireworks.push(firework)
 
     render();
 
     function render() {
-        fireWork.update()
+        // fireWork.update()
+        fireworks.update()
         renderer.render(scene, camera);
 
         requestAnimationFrame(render);
@@ -105,5 +114,15 @@ function init() {
         renderer.render(scene, camera);
     }
 
+    function handleMouseDown(){
+        const firework = new Firework({
+            x: THREE.MathUtils.randFloatSpread(8000),
+            y: THREE.MathUtils.randFloatSpread(8000),
+        })
+        scene.add(firework.points)
+        fireworks.push(firework)
+    }
+
     window.addEventListener('resize', handleResize);
+    window.addEventListener('mousedown', handleMouseDown);
 }

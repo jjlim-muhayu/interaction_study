@@ -1,10 +1,10 @@
 import * as THREE from 'three';
 
-export default class Fireworks{
+export default class Firework{
     constructor({x,y}){
         const count = 1000 + Math.round(Math.random()* 5000) //1000~2000사이의 랜덤 숫자
-        const particlesGeometry = new THREE.BufferGeometry()
         const velocity = 10 + Math.random() * 10 // 랜덤한 속도
+        const particlesGeometry = new THREE.BufferGeometry()
         this.particles = []
         for (let i = 0; i < count; i++) {
 
@@ -23,9 +23,9 @@ export default class Fireworks{
             //3차원 공간에서의 좌표 이동
             // 구면좌표계를 이용하여 파티클 이동을 얻는다.
             // 구면좌표계 <-> 직교좌표계로 변환 공식을 이용해 값을 얻는다.
-            particle.deltaX = velocity * Math.cos(particle.theta) * Math.sin(particle.phi)
+            particle.deltaX = velocity * Math.sin(particle.theta) * Math.cos(particle.phi)*2
             particle.deltaY = velocity * Math.sin(particle.theta) * Math.sin(particle.phi)
-            particle.deltaZ = velocity * Math.cos(particle.theta)
+            particle.deltaZ = velocity * Math.cos(particle.theta) * 2
             this.particles.push(particle)
         }
 
