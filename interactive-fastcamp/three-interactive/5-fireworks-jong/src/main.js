@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
-//import Fireworks from "./FireWorks.js";
+import Fireworks from "./FireWorks.js";
 
 window.addEventListener('load', function () {
     init();
@@ -21,18 +21,16 @@ function init() {
         75,
         window.innerWidth / window.innerHeight,
         1,
-        500,
+        10000,
     );
 
-    camera.position.z = 5;
+    camera.position.z = 8000;
 
     new OrbitControls(camera, renderer.domElement)
 
-    // fireWorks 클래스 사용
-    //const fireWorks = new Fireworks({x:0, y:0})
-    //scene.add(fireWorks)
-
-    const geometry = new THREE.BufferGeometry();
+    // 파티클 생성
+    // 방법1. 기본방법으로 파티클 생성
+    /*const geometry = new THREE.BufferGeometry();
     const count = 1000;
     const positions = new Float32Array(count * 3) //정점 생성 갯수 * 3(x,y,z)
     const colors = new Float32Array(count * 3)
@@ -53,7 +51,6 @@ function init() {
         colors[i *3] = Math.random()
         colors[i *3 + 1] = Math.random()
         colors[i *3 + 2] = Math.random()
-
     }
     //버퍼위치 정점 위치 정보를 담는다.
     // BufferAttribute에 정점들을 등록한다.
@@ -78,13 +75,21 @@ function init() {
     material.depthWrite = false
 
     const points = new THREE.Points(geometry, material)
-    scene.add(points)
+    scene.add(points)*/
     // const mesh = new THREE.Mesh(geometry, material)
     // scene.add(mesh)
+
+    // 방법2. fireWorks 클래스 사용하여 파티클 생성
+    const fireWorks = []
+    // fireworks인스턴스를 저장한다.
+
+    const fireWork = new Fireworks({x:0, y:0})
+    scene.add(fireWork.points)
 
     render();
 
     function render() {
+        fireWork.update()
         renderer.render(scene, camera);
 
         requestAnimationFrame(render);
