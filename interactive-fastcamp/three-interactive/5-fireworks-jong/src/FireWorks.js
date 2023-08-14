@@ -2,20 +2,30 @@ import * as THREE from 'three';
 
 export default class Fireworks{
     constructor({x,y}){
-        const count = 1000
+        const count = 1000 + Math.round(Math.random()* 5000) //1000~2000사이의 랜덤 숫자
         const particlesGeometry = new THREE.BufferGeometry()
-        const velocity = 10 + Math.random() * 10 // 10 ~ 20사이의 랜덤 숫자
+        const velocity = 10 + Math.random() * 10 // 랜덤한 속도
         this.particles = []
         for (let i = 0; i < count; i++) {
 
             // 파티클 생성
             const particle = new THREE.Vector3(x,y,0) //x,y,z 점점
 
-            // 만약 10이라면 -5 ~ 5사이의 값 반환
-            particle.deltaX = THREE.MathUtils.randFloatSpread(velocity) //X축
-            particle.deltaY = THREE.MathUtils.randFloatSpread(velocity) //X축
-            particle.deltaZ = THREE.MathUtils.randFloatSpread(velocity) //X축
+            particle.theta = Math.random() * Math.PI * 2; // 원의 중심각
+            particle.phi = Math.random() * Math.PI * 2
 
+            // 만약 10이라면 -5 ~ 5사이의 값 반환
+            // 2차원의 좌표 이동
+            // particle.deltaX = velocity * Math.cos(particle.theta)
+            // particle.deltaY = velocity * Math.sin(particle.theta)
+            // particle.deltaZ = 0
+
+            //3차원 공간에서의 좌표 이동
+            // 구면좌표계를 이용하여 파티클 이동을 얻는다.
+            // 구면좌표계 <-> 직교좌표계로 변환 공식을 이용해 값을 얻는다.
+            particle.deltaX = velocity * Math.cos(particle.theta) * Math.sin(particle.phi)
+            particle.deltaY = velocity * Math.sin(particle.theta) * Math.sin(particle.phi)
+            particle.deltaZ = velocity * Math.cos(particle.theta)
             this.particles.push(particle)
         }
 
@@ -29,7 +39,8 @@ export default class Fireworks{
             alphaMap:texture,
             transparent:true,
             depthWrite:false,
-            color:new THREE.Color(Math.random(), Math.random(),Math.random()) //Three.JS의 Color인스턴스 사용
+            color:new THREE.Color(Math.random(), Math.random(),Math.random()), //Three.JS의 Color인스턴스 사용
+            blending: THREE.AdditiveBlending,
         })
         const points = new THREE.Points(particlesGeometry, particleMaterial)
         this.points = points
